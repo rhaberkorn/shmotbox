@@ -23,7 +23,7 @@ install-deps:
 # Especially Control-Surface apparently needs a v2 core.
 # arduino-builder -compile -hardware /usr/local/arduino/hardware -tools /usr/local/arduino/hardware/tools/ -tools /usr/local/arduino/tools-builder/ -core-api-version 10618 -libraries ~/Arduino/libraries -fqbn arduino:avr:leonardo -prefs "compiler.cpp.extra_flags=-DARDUINO_API_VERSION=1" -verbose shmotbox.ino
 compile:
-	$(ARDUINO_CLI) compile --fqbn $(FQBN) .
+	$(ARDUINO_CLI) compile --clean --fqbn $(FQBN) .
 
 # You may have to run this as root, but this will require installing
 # the arduino:avr core into the root account as well.
@@ -31,3 +31,6 @@ compile:
 # On FreeBSD you have to be in the dialer group.
 upload:
 	$(ARDUINO_CLI) upload -p $(DEVICE) --fqbn $(FQBN) .
+
+monitor:
+	$(ARDUINO_CLI) monitor -p $(DEVICE) --fqbn $(FQBN) .
